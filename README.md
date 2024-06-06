@@ -15,29 +15,33 @@ To run the program use Remix IDE, we have used an Online Platform https://remix.
 Once you are on the Remix website, create a new file and save the file with a .sol extension (like MyToken.sol). Copy and paste the code into the file:
 ```javascript
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.25;
+
+pragma solidity ^0.8.0;
 
 contract MyToken {
-
     // public variables here
     string public tokenName = "META";
     string public tokenAbbrv = "MTA";
-    uint public totalSupply = 0;
+    uint256 public totalSupply = 0;
+
     // mapping variable here
-    mapping(address => uint) public balances;
+    mapping(address => uint256) public balances;
+
     // mint function
-function mint (address _address, uint _value) public{
-  totalSupply += _value;
-  balances[_address] +=_value;
-}
+    function mint(address _address, uint256 _value) public {
+        totalSupply += _value;
+        balances[_address] += _value;
+    }
 
     // burn function
-function burn (address _address, uint _value) public{
-  if (balances[_address] >= _value) {
-      totalSupply -= _value;
-      balances[_address] -= _value;
-   }
- }
+    function burn(address _address, uint256 _value) public {
+        require(balances[_address] >= _value, "Insufficient balance to burn");
+        
+        totalSupply -= _value;
+        balances[_address] -= _value;
+    }
+}
+
 
 ## Authors
 
