@@ -38,6 +38,8 @@ function burn (address _address, uint _value) public{
       balances[_address] -= _value;
    }
  }
+
+
 ## Authors
 
 Himanshu
